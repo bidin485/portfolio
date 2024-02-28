@@ -26,6 +26,8 @@
     </head>
 
     <body data-spy="scroll" data-target=".navbar" data-offset="51">
+        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
         <div class="wrapper">
             <div class="sidebar">
                 <div class="sidebar-header">
@@ -385,37 +387,54 @@
                                 <div class="contact-info">
                                     <p><i class="fa fa-user"></i>Nammiiro Zaharah Bidin</p>
                                     <p><i class="fa fa-tag"></i>Software Engineering Student</p>
-                                    <p><i class="fa fa-envelope"></i><a href="mailto:zaharabidin485@gmail.com">info@example.com</a></p>
+                                    <p><i class="fa fa-envelope"></i><a href="mailto:zaharabidin485@gmail.com">zaharabidin485@gmail.com</a></p>
                                     <p><i class="fa fa-phone"></i><a href="tel:+256708857976">+256-708-857-976</a></p>
                                     <p><i class="fa fa-map-marker"></i>Makerere University ,Uganda</p>
                                     <div class="social">
-                                        <a class="btn" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn" href=""><i class="fab fa-whatsApp-f"></i></a>
-                                        <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
-                                        <a class="btn" href=""><i class="fab fa-instagram"></i></a>
-                                        <a class="btn" href=""><i class="fab fa-youtube"></i></a>
+                                        <a class="btn" href="https://twitter.com/ZaharahBidin"><i class="fab fa-twitter"></i></a>
+                                        <a class="btn" href="https://wa.me/256708867976"><i class="fab fa-whatsapp"></i></a>
+                                        <a class="btn" href="https://www.linkedin.com/in/zaharah-bidin-349357254/"><i class="fab fa-linkedin-in"></i></a>
+                                        <a class="btn" href="https://www.instagram.com/bidinzahara?igsh=YzVkODRmOTdmMw=="><i class="fab fa-instagram"></i></a>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form">
-                                    <form>
+                                    <form id="contact-form">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <input type="text" class="form-control" placeholder="Your Name" />
+                                                <input type="text" class="form-control" id="name" name="from_name" placeholder="Your Name" required>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <input type="email" class="form-control" placeholder="Your Email" />
+                                                <input type="email" class="form-control" id="email" name="from_email" placeholder="Your Email" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Subject" />
+                                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
                                         </div>
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message" required></textarea>
                                         </div>
-                                        <div><button class="btn" type="submit">Send Message</button></div>
+                                        <div>
+                                            <button class="btn" type="submit">Send Message</button>
+                                        </div>
                                     </form>
+                                    
+                                    <script>
+                                        document.getElementById('contact-form').addEventListener('submit', function(event) {
+                                            event.preventDefault();
+                                            emailjs.sendForm('service_aw4e3qe', 'template_olkhnr7', this)
+                                                .then(function(response) {
+                                                    alert('Your message has been sent successfully!');
+                                                    document.getElementById('contact-form').reset();
+                                                }, function(error) {
+                                                    console.log('FAILED...', error);
+                                                    alert('Sorry, something went wrong. Please try again later.');
+                                                });
+                                        });
+                                    </script>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -428,7 +447,7 @@
                     <div class="content-inner">
                         <div class="row align-items-center">
                             <div class="col-md-6">
-                                <p>&copy; Copyright @2023. All Rights Reserved</p>
+                                <p>&copy; Copyright @2024. All Rights Reserved</p>
                             </div>
                             
                         </div>
